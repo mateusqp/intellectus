@@ -1,0 +1,15 @@
+# Frontend (React)  
+frontend/node_modules/  
+frontend/.env  
+frontend/dist/  
+
+# Backend (Java/Maven)  
+backend/target/  
+backend/.idea/  
+
+# IntelliJ (global)  
+.idea/  
+*.iml  
+
+# Sistemas operacionais  
+.DS_Store  
