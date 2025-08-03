@@ -3,7 +3,7 @@ frontend/node_modules/
 frontend/.env  
 frontend/dist/  
 
-# Backend (Java/Maven)  
+# Backend (Java/Maven)
 backend/target/  
 backend/.idea/  
 

@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  neo4j:
+    image: neo4j:5.15
+    container_name: intellectus-neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH: neo4j/notverysecret
+      NEO4J_PLUGINS: '["apoc"]'
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+    networks:
+      - intellectus-network
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: intellectus-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    networks:
+      - intellectus-network
+    restart: unless-stopped
+
+volumes:
+  neo4j_data:
+  neo4j_logs:
+  ollama_data:
+
+networks:
+  intellectus-network:
+    driver: bridge
